@@ -840,6 +840,14 @@ WebRTC.prototype.createPeer = function (opts) {
 
 WebRTC.prototype.startLocalMedia = function (mediaConstraints, cb) {
     var self = this;
+    
+	if(mediaConstraints == null){
+		mediaConstraints = {
+			video:self.config.media.video,
+			audio :self.config.media.audio
+		}
+	}
+	
     var constraints = mediaConstraints || {video: true, audio: true};
 
     getUserMedia(constraints, function (err, stream) {
